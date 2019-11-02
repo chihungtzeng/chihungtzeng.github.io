@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="This post is how I deploy hexo into github.io. Setup hexo12345678910111213141516171819202122232425262728$ mkdir hexo_root$ cd hexo_root$ npm install hexo-cli  # create ~&#x2F;hexo_root&#x2F;node_modules$ hexo -">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-02T14:46:35.381Z">
+<meta property="og:updated_time" content="2019-11-02T15:21:30.793Z">
 <meta name="twitter:card" content="summary">
     
     
@@ -121,7 +121,7 @@
       
     <div class="postdate">
       
-        <time datetime="2019-11-02T14:46:35.420Z" itemprop="datePublished">2019-11-02</time>
+        <time datetime="2019-11-02T15:21:30.826Z" itemprop="datePublished">2019-11-02</time>
         
       
     </div>
@@ -150,7 +150,8 @@
 <p>Test math: $a = \sqrt{2} + 3$.</p>
 <h3 id="Add-Delete-a-page"><a href="#Add-Delete-a-page" class="headerlink" title="Add/Delete a page"></a>Add/Delete a page</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># Add</span><br><span class="line">$ hexo new &quot;Hello World!&quot;</span><br><span class="line"></span><br><span class="line"># Delete</span><br><span class="line">$ rm ~/hexo_root/blog/source/_posts/My-screenrc.md</span><br><span class="line">$ hexo clean</span><br><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 <h3 id="RSS-support"><a href="#RSS-support" class="headerlink" title="RSS support"></a>RSS support</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ cd ~/hexo_root/blog</span><br><span class="line">$ npm install hexo-generator-feed  # for generate rss feeds</span><br><span class="line">$ vi _config.yml</span><br><span class="line">feed:</span><br><span class="line">    type: atom</span><br><span class="line">    path: atom.xml</span><br><span class="line">    limit: 20</span><br><span class="line">    hub:</span><br><span class="line">    content:</span><br><span class="line">    content_limit: 100</span><br><span class="line">    content_limit_delim: &apos; &apos;</span><br></pre></td></tr></table></figure>
-<h3 id="Math-support"><a href="#Math-support" class="headerlink" title="Math support"></a>Math support</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ cd ~/hexo_root/blog</span><br><span class="line">$ npm uninstall hexo-renderer-marked --save</span><br><span class="line">$ npm install hexo-renderer-kramed --save</span><br><span class="line">$ npm uninstall hexo-math --save</span><br><span class="line">$ npm install hexo-renderer-mathjax --save</span><br><span class="line">$ vi themes/cactus/_config.yml</span><br><span class="line">  mathjax:</span><br><span class="line">    enable: true</span><br></pre></td></tr></table></figure>
+<h3 id="Math-support"><a href="#Math-support" class="headerlink" title="Math support"></a>Math support</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ cd ~/hexo_root/blog</span><br><span class="line">$ npm uninstall hexo-renderer-marked --save</span><br><span class="line">$ npm install hexo-renderer-kramed --save</span><br><span class="line">$ npm uninstall hexo-math --save</span><br><span class="line">$ npm install hexo-renderer-mathjax --save</span><br><span class="line">$ vi themes/cactus/_config.yml</span><br><span class="line">  mathjax:</span><br><span class="line">    enable: true</span><br><span class="line">$ vi node_modules/hexo-renderer-mathjax/mathjax.html</span><br><span class="line">change line 15 from</span><br><span class="line">  &lt;script src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;</span><br><span class="line">to</span><br><span class="line">  &lt;script type=&quot;text/javascript&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>In the last step, the URL starts with https:// rather than http://. It is because we host github pages via https. If we use http:// to get the js file, modern browsers will issue a warning of blocked:mixed-content and refuse to download it.</p>
 
   </div>
 </article>
@@ -282,6 +283,7 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
 </body>
 </html>
