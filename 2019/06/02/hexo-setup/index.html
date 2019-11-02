@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="This post is how I deploy hexo into github.io. Setup hexo12345678910111213141516171819202122232425262728293031323334$ mkdir hexo_root$ cd hexo_root$ npm install hexo-cli  # create ~&#x2F;hexo_root&#x2F;node_mod">
+<meta name="keywords" content="tooling">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo setup">
+<meta property="og:url" content="https:&#x2F;&#x2F;chihungtzeng.github.io&#x2F;2019&#x2F;06&#x2F;02&#x2F;hexo-setup&#x2F;index.html">
+<meta property="og:site_name" content="Clark&#39;s Mill">
+<meta property="og:description" content="This post is how I deploy hexo into github.io. Setup hexo12345678910111213141516171819202122232425262728293031323334$ mkdir hexo_root$ cd hexo_root$ npm install hexo-cli  # create ~&#x2F;hexo_root&#x2F;node_mod">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-11-02T16:05:03.256Z">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Hexo setup</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/11/02/My-screenrc/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://chihungtzeng.github.io/2019/06/02/hexo-setup/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://chihungtzeng.github.io/2019/06/02/hexo-setup/&text=Hexo setup" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://chihungtzeng.github.io/2019/06/02/hexo-setup/&title=Hexo setup" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chihungtzeng.github.io/2019/06/02/hexo-setup/&is_video=false&description=Hexo setup" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Hexo setup&body=Check out this article: https://chihungtzeng.github.io/2019/06/02/hexo-setup/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://chihungtzeng.github.io/2019/06/02/hexo-setup/&title=Hexo setup" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://chihungtzeng.github.io/2019/06/02/hexo-setup/&title=Hexo setup" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://chihungtzeng.github.io/2019/06/02/hexo-setup/&title=Hexo setup" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://chihungtzeng.github.io/2019/06/02/hexo-setup/&title=Hexo setup" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://chihungtzeng.github.io/2019/06/02/hexo-setup/&name=Hexo setup&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Setup-hexo"><span class="toc-number">1.</span> <span class="toc-text">Setup hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Install-theme"><span class="toc-number">2.</span> <span class="toc-text">Install theme</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#deploy-to-github"><span class="toc-number">3.</span> <span class="toc-text">deploy to github</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Add-Delete-a-page"><span class="toc-number">4.</span> <span class="toc-text">Add/Delete a page</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RSS-support"><span class="toc-number">5.</span> <span class="toc-text">RSS support</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Math-support"><span class="toc-number">6.</span> <span class="toc-text">Math support</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Hexo setup
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Clark's Mill</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-06-02T01:17:41.000Z" itemprop="datePublished">2019-06-02</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/software-usage/">software usage</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/tooling/" rel="tag">tooling</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>This post is how I deploy hexo into github.io.</p>
+<h3 id="Setup-hexo"><a href="#Setup-hexo" class="headerlink" title="Setup hexo"></a>Setup hexo</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir hexo_root</span><br><span class="line">$ cd hexo_root</span><br><span class="line">$ npm install hexo-cli  # create ~/hexo_root/node_modules</span><br><span class="line">$ hexo -v</span><br><span class="line">...</span><br><span class="line">hexo: 4.0.0</span><br><span class="line">hexo-cli: 3.1.0</span><br><span class="line">os: Linux 4.4.6-gentoo linux x64</span><br><span class="line">http_parser: 2.8.1</span><br><span class="line">node: 8.12.0</span><br><span class="line">v8: 6.2.414.66</span><br><span class="line">uv: 1.20.0</span><br><span class="line">zlib: 1.2.11</span><br><span class="line">ares: 1.10.1-DEV</span><br><span class="line">modules: 57</span><br><span class="line">nghttp2: 1.33.0</span><br><span class="line">napi: 3</span><br><span class="line">openssl: 1.0.2q</span><br><span class="line">icu: 64.2</span><br><span class="line">unicode: 12.1</span><br><span class="line">cldr: 35.1</span><br><span class="line">tz: 2019a</span><br><span class="line"></span><br><span class="line">$ vi _config.yml</span><br><span class="line">  title: Clark&apos;s Mill</span><br><span class="line">  author: Clark</span><br><span class="line">  language: en</span><br><span class="line">  url: https://chihungtzeng.github.io</span><br><span class="line"></span><br><span class="line">$ export PATH=~/hexo_root/node_modules/hexo-cli/bin:$PATH</span><br><span class="line">$ hexo init blog  # create ~/hexo_root/blog</span><br><span class="line">$ cd ~/hexo_root/blog</span><br><span class="line">$ hexo generate</span><br><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>Now open <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> to see the effect.</p>
+<h3 id="Install-theme"><a href="#Install-theme" class="headerlink" title="Install theme"></a>Install theme</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">$ cd ~/hexo_root/blog</span><br><span class="line">$ git clone https://github.com/probberechts/hexo-theme-cactus.git themes/cactus</span><br><span class="line">$ vi _config.yml</span><br><span class="line">  theme: cactus</span><br><span class="line"></span><br><span class="line">$ cd ~/hexo_root/blog/themes/cactus</span><br><span class="line">$ vi _config.yml</span><br><span class="line">  colorscheme: light</span><br><span class="line"></span><br><span class="line">$ cd ~/hexo_root/blog</span><br><span class="line"></span><br><span class="line"># Create /about page</span><br><span class="line">$ hexo new page about</span><br><span class="line">$ vi source/about/index.md</span><br><span class="line"></span><br><span class="line"># Create /tags page</span><br><span class="line">$ hexo new page tags</span><br><span class="line">$ vi source/tags/index.md  # Add the following contents</span><br><span class="line">$ cat source/tags/index.md</span><br><span class="line">---</span><br><span class="line">title: tags</span><br><span class="line">date: 2019-11-02 17:59:17</span><br><span class="line">type: tags</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"># Create categories page</span><br><span class="line">$ hexo new page categories</span><br><span class="line">$ cat source/categories/index.md</span><br><span class="line">---</span><br><span class="line">title: categories</span><br><span class="line">date: 2019-11-02 23:46:38</span><br><span class="line">type: categories</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"># Put tags/categories pages on the navigation bar</span><br><span class="line">$ vi themes/cactus/_config.yml</span><br><span class="line">nav:</span><br><span class="line">  home: /</span><br><span class="line">  about: /about/</span><br><span class="line">  tags: /tags/</span><br><span class="line">  articles: /archives/</span><br></pre></td></tr></table></figure>
+<h3 id="deploy-to-github"><a href="#deploy-to-github" class="headerlink" title="deploy to github"></a>deploy to github</h3><p>create a repo call chihungtzeng.github.io in github web site.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ cd ~/hexo_root/blog</span><br><span class="line">$ vi _config.yml</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:chihungtzeng/chihungtzeng.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<p>Install hexo-deployer-git to enable <strong><em>hexo deploy</em></strong>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd ~/hexo_root/blog  # Notice the path</span><br><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>Now open your browser, go to github web site, and register ssh keys: settings-&gt;SSH and PGP keys. From now on, we can simply run <code>hexo deploy</code> to deploy our repo to github.io.</p>
+<h3 id="Add-Delete-a-page"><a href="#Add-Delete-a-page" class="headerlink" title="Add/Delete a page"></a>Add/Delete a page</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># Add</span><br><span class="line">$ hexo new &quot;Hello World!&quot;</span><br><span class="line"></span><br><span class="line"># Delete the page associated with My-screenrc.md</span><br><span class="line">$ rm ~/hexo_root/blog/source/_posts/My-screenrc.md</span><br><span class="line">$ hexo clean</span><br><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<h3 id="RSS-support"><a href="#RSS-support" class="headerlink" title="RSS support"></a>RSS support</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ cd ~/hexo_root/blog</span><br><span class="line">$ npm install hexo-generator-feed  # for generate rss feeds</span><br><span class="line">$ vi _config.yml</span><br><span class="line">feed:</span><br><span class="line">    type: atom</span><br><span class="line">    path: atom.xml</span><br><span class="line">    limit: 20</span><br><span class="line">    hub:</span><br><span class="line">    content:</span><br><span class="line">    content_limit: 100</span><br><span class="line">    content_limit_delim: &apos; &apos;</span><br></pre></td></tr></table></figure>
+<h3 id="Math-support"><a href="#Math-support" class="headerlink" title="Math support"></a>Math support</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ cd ~/hexo_root/blog</span><br><span class="line">$ npm uninstall hexo-renderer-marked --save</span><br><span class="line">$ npm install hexo-renderer-kramed --save</span><br><span class="line">$ npm uninstall hexo-math --save</span><br><span class="line">$ npm install hexo-renderer-mathjax --save</span><br><span class="line">$ vi themes/cactus/_config.yml</span><br><span class="line">  mathjax:</span><br><span class="line">    enable: true</span><br><span class="line">$ vi node_modules/hexo-renderer-mathjax/mathjax.html</span><br><span class="line">change line 15 from</span><br><span class="line">  &lt;script src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;</span><br><span class="line">to</span><br><span class="line">  &lt;script type=&quot;text/javascript&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>In the last step, the URL starts with https:// rather than http://. It is because we host github pages via https. If we use http:// to get the js file, modern browsers will issue a warning of blocked:mixed-content and refuse to download it.</p>
+<p>Test math: $a = \sqrt{2} + 3$.</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Setup-hexo"><span class="toc-number">1.</span> <span class="toc-text">Setup hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Install-theme"><span class="toc-number">2.</span> <span class="toc-text">Install theme</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#deploy-to-github"><span class="toc-number">3.</span> <span class="toc-text">deploy to github</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Add-Delete-a-page"><span class="toc-number">4.</span> <span class="toc-text">Add/Delete a page</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RSS-support"><span class="toc-number">5.</span> <span class="toc-text">RSS support</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Math-support"><span class="toc-number">6.</span> <span class="toc-text">Math support</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://chihungtzeng.github.io/2019/06/02/hexo-setup/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://chihungtzeng.github.io/2019/06/02/hexo-setup/&text=Hexo setup" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://chihungtzeng.github.io/2019/06/02/hexo-setup/&title=Hexo setup" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chihungtzeng.github.io/2019/06/02/hexo-setup/&is_video=false&description=Hexo setup" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Hexo setup&body=Check out this article: https://chihungtzeng.github.io/2019/06/02/hexo-setup/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://chihungtzeng.github.io/2019/06/02/hexo-setup/&title=Hexo setup" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://chihungtzeng.github.io/2019/06/02/hexo-setup/&title=Hexo setup" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://chihungtzeng.github.io/2019/06/02/hexo-setup/&title=Hexo setup" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://chihungtzeng.github.io/2019/06/02/hexo-setup/&title=Hexo setup" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://chihungtzeng.github.io/2019/06/02/hexo-setup/&name=Hexo setup&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Clark
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>
