@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="This post is how I deploy hexo into github.io. Setup hexo12345678910111213141516171819202122232425262728$ mkdir hexo_root$ cd hexo_root$ npm install hexo-cli  # create ~&#x2F;hexo_root&#x2F;node_modules$ hexo -">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-02T14:16:03.210Z">
+<meta property="og:updated_time" content="2019-11-02T14:40:40.904Z">
 <meta name="twitter:card" content="summary">
     
     
@@ -46,8 +46,7 @@
     
 </head>
 
-<body class="max-width mx-auto px3 ltr">
-    
+<body class="max-width mx-auto px3 ltr">    
       <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="header-post">
   <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
   <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
@@ -122,7 +121,7 @@
       
     <div class="postdate">
       
-        <time datetime="2019-11-02T14:16:03.245Z" itemprop="datePublished">2019-11-02</time>
+        <time datetime="2019-11-02T14:40:40.937Z" itemprop="datePublished">2019-11-02</time>
         
       
     </div>
@@ -139,25 +138,19 @@
   <div class="content" itemprop="articleBody">
     <p>This post is how I deploy hexo into github.io.</p>
 <h3 id="Setup-hexo"><a href="#Setup-hexo" class="headerlink" title="Setup hexo"></a>Setup hexo</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir hexo_root</span><br><span class="line">$ cd hexo_root</span><br><span class="line">$ npm install hexo-cli  # create ~/hexo_root/node_modules</span><br><span class="line">$ hexo -v</span><br><span class="line">...</span><br><span class="line">hexo: 4.0.0</span><br><span class="line">hexo-cli: 3.1.0</span><br><span class="line">os: Linux 4.4.6-gentoo linux x64</span><br><span class="line">http_parser: 2.8.1</span><br><span class="line">node: 8.12.0</span><br><span class="line">v8: 6.2.414.66</span><br><span class="line">uv: 1.20.0</span><br><span class="line">zlib: 1.2.11</span><br><span class="line">ares: 1.10.1-DEV</span><br><span class="line">modules: 57</span><br><span class="line">nghttp2: 1.33.0</span><br><span class="line">napi: 3</span><br><span class="line">openssl: 1.0.2q</span><br><span class="line">icu: 64.2</span><br><span class="line">unicode: 12.1</span><br><span class="line">cldr: 35.1</span><br><span class="line">tz: 2019a</span><br><span class="line"></span><br><span class="line">$ export PATH=~/hexo_root/node_modules/hexo-cli/bin:$PATH</span><br><span class="line">$ hexo init blog  # create ~/hexo_root/blog</span><br><span class="line">$ cd ~/hexo_root/blog</span><br><span class="line">$ hexo generate</span><br><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
 <p>Now open <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> to see the effect.</p>
 <h3 id="Install-theme"><a href="#Install-theme" class="headerlink" title="Install theme"></a>Install theme</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">$ cd ~/hexo_root/blog</span><br><span class="line">$ git clone https://github.com/probberechts/hexo-theme-cactus.git themes/cactus</span><br><span class="line">$ vi _config.yml</span><br><span class="line">  theme: cactus</span><br><span class="line"></span><br><span class="line">$ cd ~/hexo_root/blog/themes/cactus</span><br><span class="line">$ vi _config.yml</span><br><span class="line">  colorscheme: light</span><br><span class="line"></span><br><span class="line">$ cd ~/hexo_root/blog</span><br><span class="line"></span><br><span class="line"># Create /about page</span><br><span class="line">$ hexo new page about</span><br><span class="line">$ vi source/about/index.md</span><br><span class="line"></span><br><span class="line"># Create /tags page</span><br><span class="line">$ hexo new page tags</span><br><span class="line">$ vi source/tags/index.md  # Add the following contents</span><br><span class="line">$ cat source/tags/index.md</span><br><span class="line">---</span><br><span class="line">title: tags</span><br><span class="line">date: 2019-11-02 17:59:17</span><br><span class="line">type: tags</span><br><span class="line">---</span><br><span class="line">$ vi themes/cactus/_config.yml</span><br><span class="line">nav:</span><br><span class="line">  home: /</span><br><span class="line">  about: /about/</span><br><span class="line">  tags: /tags/</span><br><span class="line">  articles: /archives/</span><br></pre></td></tr></table></figure>
-
 <h3 id="deploy-to-github"><a href="#deploy-to-github" class="headerlink" title="deploy to github"></a>deploy to github</h3><p>create a repo call chihungtzeng.github.io in github web site.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ cd ~/hexo_root/blog</span><br><span class="line">$ vi _config.yml</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:chihungtzeng/chihungtzeng.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-
 <p>Install hexo-deployer-git to enable <strong><em>hexo deploy</em></strong>.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd ~/hexo_root/blog  # Notice the path</span><br><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-
 <p>go to github web site and register ssh keys: settings-&gt;SSH and PGP keys</p>
 <p>From now on, we can simply run <code>hexo deploy</code> to deploy our repo to github.io.</p>
 <p>Other icarus configs like qrcode are left for you to config.</p>
 <p>Test math: $a = \sqrt{2} + 3$.</p>
 <h3 id="Add-Delete-a-page"><a href="#Add-Delete-a-page" class="headerlink" title="Add/Delete a page"></a>Add/Delete a page</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># Add</span><br><span class="line">$ hexo new &quot;Hello World!&quot;</span><br><span class="line"></span><br><span class="line"># Delete</span><br><span class="line">$ rm ~/hexo_root/blog/source/_posts/My-screenrc.md</span><br><span class="line">$ hexo clean</span><br><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
 <h3 id="RSS-support"><a href="#RSS-support" class="headerlink" title="RSS support"></a>RSS support</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ cd ~/hexo_root/blog</span><br><span class="line">$ npm install hexo-generator-feed  # for generate rss feeds</span><br><span class="line">$ vi _config.yml</span><br><span class="line">feed:</span><br><span class="line">    type: atom</span><br><span class="line">    path: atom.xml</span><br><span class="line">    limit: 20</span><br><span class="line">    hub:</span><br><span class="line">    content:</span><br><span class="line">    content_limit: 100</span><br><span class="line">    content_limit_delim: &apos; &apos;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Math-support"><a href="#Math-support" class="headerlink" title="Math support"></a>Math support</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ cd ~/hexo_root/blog</span><br><span class="line">$ npm install hexo-math</span><br><span class="line">$ vi _config.yml</span><br><span class="line">math:</span><br><span class="line">  engine: &apos;mathjax&apos; # or &apos;katex&apos;</span><br><span class="line">  mathjax:</span><br><span class="line">    # src: custom_mathjax_source</span><br><span class="line">    config:</span><br><span class="line">      # MathJax config</span><br><span class="line">$ vi themes/cactus/_config.yml</span><br><span class="line"># MathJax Support</span><br><span class="line">mathjax:</span><br><span class="line">  enable: true</span><br><span class="line">  per_page: true</span><br><span class="line">  cdn: //cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML</span><br></pre></td></tr></table></figure>
+<h3 id="Math-support"><a href="#Math-support" class="headerlink" title="Math support"></a>Math support</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ cd ~/hexo_root/blog</span><br><span class="line">$ npm uninstall hexo-renderer-marked --save</span><br><span class="line">$ npm install hexo-renderer-kramed --save</span><br><span class="line">$ npm uninstall hexo-math --save</span><br><span class="line">$ npm install hexo-renderer-mathjax --save</span><br><span class="line">$ vi themes/cactus/_config.yml</span><br><span class="line">  mathjax:</span><br><span class="line">    enable: true</span><br><span class="line">    per_page: true</span><br><span class="line">    cdn: //cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML</span><br></pre></td></tr></table></figure>
 
   </div>
 </article>
@@ -272,25 +265,23 @@
 
 <!-- Baidu Analytics -->
 
-<!-- Disqus Comments --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
+<!-- Disqus Comments -->
+
 
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
 </script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-
-
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
