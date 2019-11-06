@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="This is a memo of how I work with binary files in Linux system. Show defined symbols in a shared library12345$ nm -C -D --defined-only &#x2F;usr&#x2F;lib&#x2F;libopencv_imgproc.so000000000048b738 B __bss_start000000">
+<meta property="og:type" content="article">
+<meta property="og:title" content="binary hacks">
+<meta property="og:url" content="https:&#x2F;&#x2F;chihungtzeng.github.io&#x2F;2019&#x2F;11&#x2F;05&#x2F;binary-hacks&#x2F;index.html">
+<meta property="og:site_name" content="Clark&#39;s Mill">
+<meta property="og:description" content="This is a memo of how I work with binary files in Linux system. Show defined symbols in a shared library12345$ nm -C -D --defined-only &#x2F;usr&#x2F;lib&#x2F;libopencv_imgproc.so000000000048b738 B __bss_start000000">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-11-06T11:29:39.894Z">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>binary hacks</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2019/11/04/clang-tips-and-tricks/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://chihungtzeng.github.io/2019/11/05/binary-hacks/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://chihungtzeng.github.io/2019/11/05/binary-hacks/&text=binary hacks" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://chihungtzeng.github.io/2019/11/05/binary-hacks/&title=binary hacks" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chihungtzeng.github.io/2019/11/05/binary-hacks/&is_video=false&description=binary hacks" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=binary hacks&body=Check out this article: https://chihungtzeng.github.io/2019/11/05/binary-hacks/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://chihungtzeng.github.io/2019/11/05/binary-hacks/&title=binary hacks" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://chihungtzeng.github.io/2019/11/05/binary-hacks/&title=binary hacks" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://chihungtzeng.github.io/2019/11/05/binary-hacks/&title=binary hacks" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://chihungtzeng.github.io/2019/11/05/binary-hacks/&title=binary hacks" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://chihungtzeng.github.io/2019/11/05/binary-hacks/&name=binary hacks&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Show-defined-symbols-in-a-shared-library"><span class="toc-number">1.</span> <span class="toc-text">Show defined symbols in a shared library</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Show-debug-info-section-contents"><span class="toc-number">2.</span> <span class="toc-text">Show .debug_info section contents</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Show-source-code-paths"><span class="toc-number">3.</span> <span class="toc-text">Show source code paths</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Dump-the-contents-of-a-section"><span class="toc-number">4.</span> <span class="toc-text">Dump the contents of a section</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Check-ABI-compatibility"><span class="toc-number">5.</span> <span class="toc-text">Check ABI compatibility</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Check-module-dependency"><span class="toc-number">6.</span> <span class="toc-text">Check module dependency</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Recompile-related-c-when-h-is-modified"><span class="toc-number">7.</span> <span class="toc-text">Recompile related *.c when .h is modified</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Check-what-compiler-that-generates-a-binary-file"><span class="toc-number">8.</span> <span class="toc-text">Check what compiler that generates a binary file</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        binary hacks
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Clark's Mill</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-11-05T11:05:00.000Z" itemprop="datePublished">2019-11-05</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/tooling/">tooling</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>This is a memo of how I work with binary files in Linux system.</p>
+<h3 id="Show-defined-symbols-in-a-shared-library"><a href="#Show-defined-symbols-in-a-shared-library" class="headerlink" title="Show defined symbols in a shared library"></a>Show defined symbols in a shared library</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ nm -C -D --defined-only /usr/lib/libopencv_imgproc.so</span><br><span class="line">000000000048b738 B __bss_start</span><br><span class="line">0000000000163880 T cv2DRotationMatrix</span><br><span class="line">0000000000048360 T cvAcc</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="Show-debug-info-section-contents"><a href="#Show-debug-info-section-contents" class="headerlink" title="Show .debug_info section contents"></a>Show .debug_info section contents</h3><p>See symbol values</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ readelf --debug-dump=info foo.o</span><br><span class="line">Contents of the .debug_info section:</span><br><span class="line"></span><br><span class="line">  Compilation Unit @ offset 0x0:</span><br><span class="line">   Length:        0xcb (32-bit)</span><br><span class="line">   Version:       4</span><br><span class="line">   Abbrev Offset: 0x0</span><br><span class="line">   Pointer Size:  8</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="Show-source-code-paths"><a href="#Show-source-code-paths" class="headerlink" title="Show source code paths"></a>Show source code paths</h3><p>Sometimes we get a spurious shared library, and we want to find how it was compiled. We can use <code>strings</code> to do so.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ strings -f /usr/lib/libopencv_imgproc.so</span><br></pre></td></tr></table></figure>
+<p>It actually prints all the strings in a binary file. We need to inspect the ouput to catch the path.</p>
+<h3 id="Dump-the-contents-of-a-section"><a href="#Dump-the-contents-of-a-section" class="headerlink" title="Dump the contents of a section"></a>Dump the contents of a section</h3><p>For example, we want to dump the .text section of libopencv_imgproc.so</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ objdump -h /usr/lib64/libopencv_imgproc.so | grep .text</span><br><span class="line"> 10 .text         001e0a84  000000000003aa80  000000000003aa80  0003aa80  2**4</span><br><span class="line">$ dd if=/usr/lib64/libopencv_imgproc.so of=output.bin bs=1 count=$[0x001e0a84] skip=$[0x0003aa80]</span><br></pre></td></tr></table></figure>
+<p>The output file is output.bin.</p>
+<h3 id="Check-ABI-compatibility"><a href="#Check-ABI-compatibility" class="headerlink" title="Check ABI compatibility"></a>Check ABI compatibility</h3><p>abi-comliance-checker</p>
+<h3 id="Check-module-dependency"><a href="#Check-module-dependency" class="headerlink" title="Check module dependency"></a>Check module dependency</h3><p>elf-dependency-walker</p>
+<h3 id="Recompile-related-c-when-h-is-modified"><a href="#Recompile-related-c-when-h-is-modified" class="headerlink" title="Recompile related *.c when .h is modified"></a>Recompile related *.c when .h is modified</h3><p>autodependencies with GNU make</p>
+<h3 id="Check-what-compiler-that-generates-a-binary-file"><a href="#Check-what-compiler-that-generates-a-binary-file" class="headerlink" title="Check what compiler that generates a binary file"></a>Check what compiler that generates a binary file</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ readelf -p .comment foo.so</span><br><span class="line"></span><br><span class="line">String dump of section &apos;.comment&apos;:</span><br><span class="line">  [     0]  GCC: (Gentoo 8.2.0-r6 p1.7) 8.2.0</span><br><span class="line">  [    22]  GCC: (Gentoo 8.3.0-r1 p1.1) 8.3.0</span><br></pre></td></tr></table></figure>
+<p>or</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ objdump -s --section .comment foo.o</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Show-defined-symbols-in-a-shared-library"><span class="toc-number">1.</span> <span class="toc-text">Show defined symbols in a shared library</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Show-debug-info-section-contents"><span class="toc-number">2.</span> <span class="toc-text">Show .debug_info section contents</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Show-source-code-paths"><span class="toc-number">3.</span> <span class="toc-text">Show source code paths</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Dump-the-contents-of-a-section"><span class="toc-number">4.</span> <span class="toc-text">Dump the contents of a section</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Check-ABI-compatibility"><span class="toc-number">5.</span> <span class="toc-text">Check ABI compatibility</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Check-module-dependency"><span class="toc-number">6.</span> <span class="toc-text">Check module dependency</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Recompile-related-c-when-h-is-modified"><span class="toc-number">7.</span> <span class="toc-text">Recompile related *.c when .h is modified</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Check-what-compiler-that-generates-a-binary-file"><span class="toc-number">8.</span> <span class="toc-text">Check what compiler that generates a binary file</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://chihungtzeng.github.io/2019/11/05/binary-hacks/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://chihungtzeng.github.io/2019/11/05/binary-hacks/&text=binary hacks" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://chihungtzeng.github.io/2019/11/05/binary-hacks/&title=binary hacks" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://chihungtzeng.github.io/2019/11/05/binary-hacks/&is_video=false&description=binary hacks" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=binary hacks&body=Check out this article: https://chihungtzeng.github.io/2019/11/05/binary-hacks/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://chihungtzeng.github.io/2019/11/05/binary-hacks/&title=binary hacks" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://chihungtzeng.github.io/2019/11/05/binary-hacks/&title=binary hacks" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://chihungtzeng.github.io/2019/11/05/binary-hacks/&title=binary hacks" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://chihungtzeng.github.io/2019/11/05/binary-hacks/&title=binary hacks" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://chihungtzeng.github.io/2019/11/05/binary-hacks/&name=binary hacks&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Clark
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/tags/">tags</a></li>
+         
+          <li><a href="/categories/">categories</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-17952867-4', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>
