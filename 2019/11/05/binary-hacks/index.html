@@ -6,15 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="This is a memo of how I work with binary files in Linux system. Show defined symbols in a shared library12345$ nm -C -D --defined-only &#x2F;usr&#x2F;lib&#x2F;libopencv_imgproc.so000000000048b738 B __bss_start000000">
+    <meta name="description" content="This is a memo of how I work with binary files in Linux system. For a more systematic study of this topic, I found the following two books quite useful. Their authors are Japenese, and I am not sure i">
 <meta property="og:type" content="article">
 <meta property="og:title" content="binary hacks">
 <meta property="og:url" content="https:&#x2F;&#x2F;chihungtzeng.github.io&#x2F;2019&#x2F;11&#x2F;05&#x2F;binary-hacks&#x2F;index.html">
 <meta property="og:site_name" content="Clark&#39;s Mill">
-<meta property="og:description" content="This is a memo of how I work with binary files in Linux system. Show defined symbols in a shared library12345$ nm -C -D --defined-only &#x2F;usr&#x2F;lib&#x2F;libopencv_imgproc.so000000000048b738 B __bss_start000000">
+<meta property="og:description" content="This is a memo of how I work with binary files in Linux system. For a more systematic study of this topic, I found the following two books quite useful. Their authors are Japenese, and I am not sure i">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-06T11:29:39.894Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;chihungtzeng.github.io&#x2F;2019&#x2F;11&#x2F;05&#x2F;binary-hacks&#x2F;binary_hacks.jpg">
+<meta property="og:updated_time" content="2019-11-13T12:25:27.064Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;chihungtzeng.github.io&#x2F;2019&#x2F;11&#x2F;05&#x2F;binary-hacks&#x2F;binary_hacks.jpg">
     
     
         
@@ -143,7 +145,8 @@
   
 
   <div class="content" itemprop="articleBody">
-    <p>This is a memo of how I work with binary files in Linux system.</p>
+    <p>This is a memo of how I work with binary files in Linux system. For a more systematic study of this topic, I found the following two books quite useful. Their authors are Japenese, and I am not sure if there are Enghlish version.</p>
+<p><img src="binary_hacks.jpg" alt="binary_hacks.jpg"></p>
 <h3 id="Show-defined-symbols-in-a-shared-library"><a href="#Show-defined-symbols-in-a-shared-library" class="headerlink" title="Show defined symbols in a shared library"></a>Show defined symbols in a shared library</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ nm -C -D --defined-only /usr/lib/libopencv_imgproc.so</span><br><span class="line">000000000048b738 B __bss_start</span><br><span class="line">0000000000163880 T cv2DRotationMatrix</span><br><span class="line">0000000000048360 T cvAcc</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <h3 id="Show-debug-info-section-contents"><a href="#Show-debug-info-section-contents" class="headerlink" title="Show .debug_info section contents"></a>Show .debug_info section contents</h3><p>See symbol values</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ readelf --debug-dump=info foo.o</span><br><span class="line">Contents of the .debug_info section:</span><br><span class="line"></span><br><span class="line">  Compilation Unit @ offset 0x0:</span><br><span class="line">   Length:        0xcb (32-bit)</span><br><span class="line">   Version:       4</span><br><span class="line">   Abbrev Offset: 0x0</span><br><span class="line">   Pointer Size:  8</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
