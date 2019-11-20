@@ -7,7 +7,7 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="SituationThis is my personal experience.  I joined a software team where teammates did not pay enough attention to keep our codebase healthy. In many times, I pulled the tip code and the build failed">
-<meta name="keywords" content="buildbot,gitlab">
+<meta name="keywords" content="GitLabStatusPush,merge request">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Integrate gitlab and buildbot">
 <meta property="og:url" content="https:&#x2F;&#x2F;chihungtzeng.github.io&#x2F;2019&#x2F;11&#x2F;20&#x2F;Integrate-gitlab-and-buildbot&#x2F;index.html">
@@ -16,7 +16,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;chihungtzeng.github.io&#x2F;2019&#x2F;11&#x2F;20&#x2F;Integrate-gitlab-and-buildbot&#x2F;bbot_process_pipeline.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;chihungtzeng.github.io&#x2F;2019&#x2F;11&#x2F;20&#x2F;Integrate-gitlab-and-buildbot&#x2F;mr_merge_only_success.png">
-<meta property="og:updated_time" content="2019-11-20T12:10:41.404Z">
+<meta property="og:updated_time" content="2019-11-20T12:17:30.983Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;chihungtzeng.github.io&#x2F;2019&#x2F;11&#x2F;20&#x2F;Integrate-gitlab-and-buildbot&#x2F;bbot_process_pipeline.png">
     
@@ -176,7 +176,7 @@
 <li>When buildbot and gitlab do not integrate well, add <strong>debug=True</strong> in GitLabStatusPush() call in buildbot master.cfg. It will show what’s going on between the two systems.</li>
 <li>In the merge request pipeline, I wrote a condition to decide if we are going to do a clean build or a dirty build. This way, we can make the pipeline run faster in most cases.</li>
 <li>In each pipeline, log everything and reveal it to users so that people know how to respond if something goes wrong.</li>
-<li>At the beginning of merge request pipeline, I check if the commit is based on the latest master by using the command<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge-base --is-ancestor remotes/origin/master HEAD</span><br></pre></td></tr></table></figure>
+<li>At the beginning of merge request pipeline, I check if the commit is based on the latest master by using the command<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge-base --is-ancestor remotes/origin/master HEAD</span><br></pre></td></tr></table></figure>
 If yes, then the command returns 0. Otherwise 1.</li>
 <li>I use the following command to list the files in a merge request<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff --name-only `git merge-base origin/master HEAD`</span><br></pre></td></tr></table></figure>
 </li>
