@@ -16,7 +16,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;chihungtzeng.github.io&#x2F;2019&#x2F;11&#x2F;20&#x2F;Integrate-gitlab-and-buildbot&#x2F;bbot_process_pipeline.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;chihungtzeng.github.io&#x2F;2019&#x2F;11&#x2F;20&#x2F;Integrate-gitlab-and-buildbot&#x2F;mr_merge_only_success.png">
-<meta property="og:updated_time" content="2019-11-20T12:17:30.983Z">
+<meta property="og:updated_time" content="2019-11-25T02:25:17.372Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;chihungtzeng.github.io&#x2F;2019&#x2F;11&#x2F;20&#x2F;Integrate-gitlab-and-buildbot&#x2F;bbot_process_pipeline.png">
     
@@ -74,6 +74,8 @@
     <br/>
     <span id="actions">
       <ul>
+        
+        <li><a class="icon" href="/2019/11/25/Bookmarks-about-debugging/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
         <li><a class="icon" href="/2019/11/05/binary-hacks/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
@@ -172,14 +174,14 @@
 <p>Below are the screenshots of the result. </p>
 <p><img src="bbot_process_pipeline.png" alt="bbot_process_pipeline.png"></p>
 <p><img src="mr_merge_only_success.png" alt="mr_merge_only_success.png"></p>
+<p>In each merge request pipeline, we run an incremental build if possible, forbids any file larger than 15MB, and pylint for python files. If a pipeline stage fails, gitlab will show a red button in the merge request page to warn that the patch needs a further inspection.</p>
 <h3 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h3><ul>
 <li>When buildbot and gitlab do not integrate well, add <strong>debug=True</strong> in GitLabStatusPush() call in buildbot master.cfg. It will show what’s going on between the two systems.</li>
 <li>In the merge request pipeline, I wrote a condition to decide if we are going to do a clean build or a dirty build. This way, we can make the pipeline run faster in most cases.</li>
 <li>In each pipeline, log everything and reveal it to users so that people know how to respond if something goes wrong.</li>
-<li>At the beginning of merge request pipeline, I check if the commit is based on the latest master by using the command<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge-base --is-ancestor remotes/origin/master HEAD</span><br></pre></td></tr></table></figure>
-If yes, then the command returns 0. Otherwise 1.</li>
-<li>I use the following command to list the files in a merge request<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff --name-only `git merge-base origin/master HEAD`</span><br></pre></td></tr></table></figure>
-</li>
+<li>At the beginning of merge request pipeline, the tip code is automatically merged<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git fetch</span><br><span class="line">git merge remotes/origin/master --no-ff</span><br><span class="line">git merge-base --is-ancestor remotes/origin/master HEAD</span><br></pre></td></tr></table></figure></li>
+<li>To list the files in the merge request, use<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff --name-only `git merge-base origin/master HEAD`</span><br></pre></td></tr></table></figure></li>
+<li>cmake blog has <a href="https://blog.kitware.com/static-checks-with-cmake-cdash-iwyu-clang-tidy-lwyu-cpplint-and-cppcheck/" target="_blank" rel="noopener">a great post</a> about how to do static check. Some of them can be integrated into merge request pipeline.</li>
 </ul>
 
   </div>
