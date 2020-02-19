@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Clark&#39;s Mill">
 <meta property="og:description" content="As a gentoo user, I want to build gentoo-based docker image to can deploy to other Linux distributions. Such a docker image is usually faster when compared to another one generated otherwise. This pos">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-05T15:26:45.714Z">
+<meta property="og:updated_time" content="2019-12-05T15:27:33.901Z">
 <meta name="twitter:card" content="summary">
     
     
@@ -155,7 +155,7 @@
 <p>(Tips: we can futher chroot to /mnt/nginx-docker to check if we can launch the service.)</p>
 <p>The reason why emerging bash/shadow/glibc is that we use dynamic shared libraries when building nginx. Although I didn’t try, I suspect that use <code>emerge -e nginx</code> would be OK in this case.</p>
 <p>After emerge finishes, exit the chroot environment and run the following command:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /mnt/gentoo/mnt/nginx-docker</span><br><span class="line">tar --numeric-owner -cj --to-stdout . |docker import - gentoo-nginx:base</span><br></pre></td></tr></table></figure><br>What follows is standard docker image making.</p>
-<p>Although it is fun to do so, I would not recommend other people to make gentoo-based docker image because there are many dark corners out there.</p>
+<p>Although it is fun to do so, I would not recommend other people to make gentoo-based docker images because there are many dark corners out there.</p>
 
   </div>
 </article>
@@ -215,7 +215,7 @@
         
         <footer id="footer">
   <div class="footer-left">
-    Copyright &copy; 2019 Clark
+    Copyright &copy; 2020 Clark
   </div>
   <div class="footer-right">
     <nav>
